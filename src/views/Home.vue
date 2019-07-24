@@ -1,55 +1,95 @@
 <template>
-  <main class="d-flex flex-column container">
-    <section class="my-5">
-      <div class="row mb-3">
-        <div class="col">
-          <h2 class="my-0 options-header">Settings</h2>
-        </div>
-        <div class="col-auto">
-          <label for="preset">Preset</label>
-          <select v-model="preset" name="preset" id="preset">
-            <option class="preset-option" value="custom">Custom</option>
-            <option v-for="(p, i) in presetKeys" :key="i" class="preset-option" :value="p">{{ p | capitalize }}</option>
-          </select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-lg-4 mb-3">
-          <div class="box box-idle">
-            <Slider v-model="idleElevation" label="Idle" minValue="0" maxValue="24" step="1"/>
-          </div>
-        </div>
-        <div class="col-12 col-lg-4 mb-3">
-          <div class="box box-hover">
-            <Slider v-model="hoverElevation" label="Hover" minValue="0" maxValue="24" step="1"/>
-          </div>
-        </div>
-        <div class="col-12 col-lg-4 mb-3">
-          <div class="box box-active">
-            <Slider v-model="activeElevation" label="Active" minValue="0" maxValue="24" step="1"/>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="d-flex flex-grow-1 mb-5">
-      <div class="box box-combine">
-        <div class="box-content">
-          <span>Combine</span>
-        </div>
-      </div>
-    </section>
-  </main>
+  <v-container grid-list-xl>
+    <v-layout column>
+      <v-flex>
+        <v-layout row wrap>
+          <v-spacer></v-spacer>
+          <v-flex shrink>
+            <v-select
+              :items="presetItems"
+              v-model="preset"
+              label="Preset"
+              outlined
+              style="width: 200px;"
+            ></v-select>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+      <v-flex>
+        <v-layout row wrap justify-center>
+          <v-flex xs12 md4>
+            <v-card class="box-idle">
+              <v-card-title primary-title>
+                Idle
+              </v-card-title>
+              <v-card-text>
+                <v-slider
+                  v-model="idleElevation"
+                  min="0"
+                  max="24"
+                  step="1"
+                  thumb-label
+                ></v-slider>
+              </v-card-text>
+            </v-card>
+          </v-flex>
+          <v-flex xs12 md4>
+            <v-card class="box-hover">
+              <v-card-title primary-title>
+                Hover
+              </v-card-title>
+              <v-card-text>
+                <v-slider
+                  v-model="hoverElevation"
+                  min="0"
+                  max="24"
+                  step="1"
+                  thumb-label
+                ></v-slider>
+              </v-card-text>
+            </v-card>
+          </v-flex>
+          <v-flex xs12 md4>
+            <v-card class="box-active">
+              <v-card-title primary-title>
+                Active
+              </v-card-title>
+              <v-card-text>
+                <v-slider
+                  v-model="activeElevation"
+                  min="0"
+                  max="24"
+                  step="1"
+                  thumb-label
+                ></v-slider>
+              </v-card-text>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+      <v-flex my-5 text-center>
+        <v-card class="box-combine">
+          <v-card-title primary-title class="justify-center">
+            Result
+          </v-card-title>
+          <v-card-text>
+            All states combined. Hover/click me to see results!
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import Slider from '@/components/Slider.vue'
 
 export default {
   name: 'Home',
   data () {
     return {
       preset: 'custom',
+      presetItems: [{ text: 'Custom', value: 'custom' }],
       idleElevation: 0,
       hoverElevation: 0,
       activeElevation: 0
@@ -62,9 +102,6 @@ export default {
     ...mapGetters([
       'getElevationShadow'
     ]),
-    presetKeys () {
-      return Object.keys(this.presets)
-    },
     boxIdleShadow () {
       return this.getElevationShadow(this.idleElevation)
     },
@@ -75,65 +112,48 @@ export default {
       return this.getElevationShadow(this.activeElevation)
     }
   },
-  watch: {
-    boxIdleShadow (val) {
-      document.documentElement.style.setProperty('--box-idle-shadow', val)
-    },
-    boxHoverShadow (val) {
-      document.documentElement.style.setProperty('--box-hover-shadow', val)
-    },
-    boxActiveShadow (val) {
-      document.documentElement.style.setProperty('--box-active-shadow', val)
-    },
-    preset (val) {
-      if (val !== 'custom') {
-        const elevations = this.presets[this.preset]
-        this.idleElevation = elevations[0]
-        this.hoverElevation = elevations[1]
-        this.activeElevation = elevations[2]
-      }
-    }
-  },
-  filters: {
+  methods: {
     capitalize (val) {
       if (!val) return ''
       val = val.toString()
       return val.charAt(0).toUpperCase() + val.slice(1)
     }
   },
+  watch: {
+    boxIdleShadow (val) {
+      this.preset = 'custom'
+      document.documentElement.style.setProperty('--box-idle-shadow', val)
+    },
+    boxHoverShadow (val) {
+      this.preset = 'custom'
+      document.documentElement.style.setProperty('--box-hover-shadow', val)
+    },
+    boxActiveShadow (val) {
+      this.preset = 'custom'
+      document.documentElement.style.setProperty('--box-active-shadow', val)
+    },
+    preset (val) {
+      if (this.presets.hasOwnProperty(val)) {
+        const elevations = this.presets[val]
+        this.idleElevation = elevations[0]
+        this.hoverElevation = elevations[1]
+        this.activeElevation = elevations[2]
+      }
+    }
+  },
   mounted () {
     this.idleElevation = 2
     this.hoverElevation = 4
     this.activeElevation = 6
-  },
-  components: {
-    Slider
+
+    Object.keys(this.presets).forEach((val) => {
+      this.presetItems.push({ text: this.capitalize(val), value: val })
+    })
   }
 }
 </script>
 
 <style scoped>
-.options-header {
-  color: var(--primary-color);
-}
-
-.preset-option {
-  text-transform: capitalize;
-}
-
-.box {
-  position: relative;
-  padding: 1rem;
-  border-radius: .25rem;
-  transition: all .3s cubic-bezier(0.215, 0.610, 0.355, 1);
-}
-
-.box .box-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-}
 
 .box-idle {
   box-shadow: var(--box-idle-shadow);
@@ -148,7 +168,6 @@ export default {
 }
 
 .box-combine {
-  width: 100%;
   box-shadow: var(--box-idle-shadow);
 }
 .box-combine:hover {

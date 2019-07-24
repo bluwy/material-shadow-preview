@@ -1,17 +1,19 @@
 <template>
-  <footer class="elevation-8 footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-auto">
-          Fork on <a href="https://github.com/bjornlug">GitHub</a>
-        </div>
-        <div class="col"></div>
-        <div class="col-auto">
-          <a href="https://bjornlu.netlify.com">Bjorn Lu</a> 2019
-        </div>
-      </div>
-    </div>
-  </footer>
+  <v-footer dark color="primary" class="text-center">
+    <v-card flat color="primary" width="100%">
+      <v-card-text>
+        <v-layout row wrap>
+          <v-flex shrink>
+            Fork on <a class="white--text" href="https://github.com/bjornlug">GitHub</a>
+          </v-flex>
+          <v-spacer></v-spacer>
+          <v-flex shrink>
+            &copy; <a class="white--text" href="https://bjornlu.netlify.com">Bjorn Lu</a> {{ new Date().getFullYear() }}
+          </v-flex>
+        </v-layout>
+      </v-card-text>
+    </v-card>
+  </v-footer>
 </template>
 
 <script>
