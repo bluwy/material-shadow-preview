@@ -1,14 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Learn from './views/Learn.vue'
-import About from './views/About.vue'
+const Null = () => import('./views/Null.vue')
+const Home = () => import('./views/Home.vue')
+const Learn = () => import('./views/Learn.vue')
+const About = () => import('./views/About.vue')
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '*',
+      name: '404',
+      component: Null
+    },
     {
       path: '/',
       name: 'home',
