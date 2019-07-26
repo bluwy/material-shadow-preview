@@ -29,19 +29,7 @@
               <v-card-title primary-title>
                 <span>Idle</span>
                 <v-spacer></v-spacer>
-                <v-flex xs1 pa-0>
-                  <v-select
-                    :items="elevationRange"
-                    v-model="idleElevation"
-                    hide-details
-                    solo
-                    flat
-                    dense
-                    reverse
-                    append-icon=""
-                    class="pa-0"
-                  ></v-select>
-                </v-flex>
+                <HomeSelect v-model="idleElevation" :items="elevationRange"></HomeSelect>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -58,19 +46,7 @@
               <v-card-title primary-title>
                 <span>Hover</span>
                 <v-spacer></v-spacer>
-                <v-flex xs1 pa-0>
-                  <v-select
-                    :items="elevationRange"
-                    v-model="hoverElevation"
-                    hide-details
-                    solo
-                    flat
-                    dense
-                    reverse
-                    append-icon=""
-                    class="pa-0"
-                  ></v-select>
-                </v-flex>
+                <HomeSelect v-model="hoverElevation" :items="elevationRange"></HomeSelect>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -87,19 +63,7 @@
               <v-card-title primary-title>
                 <span>Active</span>
                 <v-spacer></v-spacer>
-                <v-flex xs1 pa-0>
-                  <v-select
-                    :items="elevationRange"
-                    v-model="activeElevation"
-                    hide-details
-                    solo
-                    flat
-                    dense
-                    reverse
-                    append-icon=""
-                    class="pa-0"
-                  ></v-select>
-                </v-flex>
+                <HomeSelect v-model="activeElevation" :items="elevationRange"></HomeSelect>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -114,24 +78,45 @@
         </v-layout>
       </v-flex>
       <v-flex my-5 text-center>
-        <v-card class="box-result" :class="{ 'idle': simulateIdle, 'hover': simulateHover, 'active': simulateActive }">
-          <v-card-title primary-title class="justify-center">
-            Result
-          </v-card-title>
-          <v-card-text>
-            All states combined. Hover/click me to see results!
-          </v-card-text>
-        </v-card>
+        <button class="box-result" :class="{ 'idle': simulateIdle, 'hover': simulateHover, 'active': simulateActive }">
+          <v-card elevation="0">
+            <v-card-title primary-title class="justify-center">
+              Result
+            </v-card-title>
+            <v-card-text>
+              All states combined.
+              <span v-if="isTouchscreen">
+                Simulate state with the radios below:
+              </span>
+              <span v-else>
+                Hover/click me to see results!
+              </span>
+              <v-layout v-if="isTouchscreen" justify-center>
+                <v-flex shrink>
+                  <v-radio-group v-model="simulateValue" row>
+                    <v-radio label="Idle" value="idle"></v-radio>
+                    <v-radio label="Hover" value="hover"></v-radio>
+                    <v-radio label="Active" value="active"></v-radio>
+                  </v-radio-group>
+                </v-flex>
+              </v-layout>
+            </v-card-text>
+          </v-card>
+        </button>
       </v-flex>
-      <v-flex class="touchscreen">
-        <v-radio-group v-model="simulateValue" row>
-          <template v-slot:prepend>
-            <span class="mt-1">Simulate: </span>
-          </template>
-          <v-radio label="Idle" value="idle"></v-radio>
-          <v-radio label="Hover" value="hover"></v-radio>
-          <v-radio label="Active" value="active"></v-radio>
-        </v-radio-group>
+      <v-flex>
+        <v-layout row wrap>
+          <v-spacer></v-spacer>
+          <v-flex shrink>
+            <v-checkbox v-model="viewResultCss" label="View CSS"  hide-details class="ma-0"></v-checkbox>
+          </v-flex>
+          <v-flex shrink>
+            <v-btn color="primary">Download</v-btn>
+          </v-flex>
+        </v-layout>
+        <div v-show="viewResultCss">
+          Code
+        </div>
       </v-flex>
     </v-layout>
   </v-container>
@@ -139,6 +124,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import HomeSelect from '@/components/HomeSelect.vue'
 
 export default {
   name: 'Home',
@@ -150,7 +136,9 @@ export default {
       idleElevation: 0,
       hoverElevation: 0,
       activeElevation: 0,
-      simulateValue: ''
+      simulateValue: '',
+      isTouchscreen: false,
+      viewResultCss: false
     }
   },
   computed: {
@@ -216,6 +204,14 @@ export default {
     Object.keys(this.presets).forEach((val) => {
       this.presetItems.push({ text: this.capitalize(val), value: val })
     })
+
+    this.isTouchscreen = window.matchMedia('(pointer: coarse)').matches
+    if (this.isTouchscreen) {
+      this.simulateValue = 'idle'
+    }
+  },
+  components: {
+    HomeSelect
   }
 }
 </script>
@@ -229,11 +225,14 @@ export default {
 
 .box-result {
   box-shadow: var(--box-idle-shadow);
+  width: 100%;
+  transition: box-shadow .2s cubic-bezier(.4, 0, .2, 1);
 }
-.box-result:hover {
+.box-result:hover, .box-result:focus {
   box-shadow: var(--box-hover-shadow);
+  outline: none;
 }
-.box-result:focus, .box-result:active {
+.box-result:active {
   box-shadow: var(--box-active-shadow);
 }
 .box-result.idle {
@@ -244,13 +243,5 @@ export default {
 }
 .box-result.active {
   box-shadow: var(--box-active-shadow);
-}
-
-/* Is accurate pointer (e.g. mouse) */
-@media (pointer: fine) {
-  .touchscreen {
-    display: none;
-    visibility: hidden;
-  }
 }
 </style>
