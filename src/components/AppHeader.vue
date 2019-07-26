@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app dark color="primary">
+  <v-app-bar app absolute dark color="primary">
     <v-toolbar-title>
       <router-link class="white--text" to="/">
         Material Shadow Preview

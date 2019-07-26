@@ -2,6 +2,13 @@
   <v-container grid-list-xl>
     <v-layout column>
       <v-flex>
+        <p>
+          The Material Design uses a 24-depth elevation system to represent how much is elevated upwards.
+          We can use different elevations for different components' states.
+          <router-link to="/learn">Learn more...</router-link>
+        </p>
+      </v-flex>
+      <v-flex>
         <v-layout row wrap>
           <v-spacer></v-spacer>
           <v-flex shrink>
@@ -9,7 +16,7 @@
               :items="presetItems"
               v-model="preset"
               label="Preset"
-              outlined
+              hide-details
               style="width: 200px;"
             ></v-select>
           </v-flex>
@@ -18,9 +25,23 @@
       <v-flex>
         <v-layout row wrap justify-center>
           <v-flex xs12 md4>
-            <v-card class="box-idle">
+            <v-card :elevation="idleElevation">
               <v-card-title primary-title>
-                Idle
+                <span>Idle</span>
+                <v-spacer></v-spacer>
+                <v-flex xs1 pa-0>
+                  <v-select
+                    :items="elevationRange"
+                    v-model="idleElevation"
+                    hide-details
+                    solo
+                    flat
+                    dense
+                    reverse
+                    append-icon=""
+                    class="pa-0"
+                  ></v-select>
+                </v-flex>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -28,15 +49,28 @@
                   min="0"
                   max="24"
                   step="1"
-                  thumb-label
                 ></v-slider>
               </v-card-text>
             </v-card>
           </v-flex>
           <v-flex xs12 md4>
-            <v-card class="box-hover">
+            <v-card :elevation="hoverElevation">
               <v-card-title primary-title>
-                Hover
+                <span>Hover</span>
+                <v-spacer></v-spacer>
+                <v-flex xs1 pa-0>
+                  <v-select
+                    :items="elevationRange"
+                    v-model="hoverElevation"
+                    hide-details
+                    solo
+                    flat
+                    dense
+                    reverse
+                    append-icon=""
+                    class="pa-0"
+                  ></v-select>
+                </v-flex>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -44,15 +78,28 @@
                   min="0"
                   max="24"
                   step="1"
-                  thumb-label
                 ></v-slider>
               </v-card-text>
             </v-card>
           </v-flex>
           <v-flex xs12 md4>
-            <v-card class="box-active">
+            <v-card :elevation="activeElevation">
               <v-card-title primary-title>
-                Active
+                <span>Active</span>
+                <v-spacer></v-spacer>
+                <v-flex xs1 pa-0>
+                  <v-select
+                    :items="elevationRange"
+                    v-model="activeElevation"
+                    hide-details
+                    solo
+                    flat
+                    dense
+                    reverse
+                    append-icon=""
+                    class="pa-0"
+                  ></v-select>
+                </v-flex>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -60,7 +107,6 @@
                   min="0"
                   max="24"
                   step="1"
-                  thumb-label
                 ></v-slider>
               </v-card-text>
             </v-card>
@@ -68,7 +114,7 @@
         </v-layout>
       </v-flex>
       <v-flex my-5 text-center>
-        <v-card class="box-combine">
+        <v-card class="box-result" :class="{ 'idle': simulateIdle, 'hover': simulateHover, 'active': simulateActive }">
           <v-card-title primary-title class="justify-center">
             Result
           </v-card-title>
@@ -76,6 +122,16 @@
             All states combined. Hover/click me to see results!
           </v-card-text>
         </v-card>
+      </v-flex>
+      <v-flex class="touchscreen">
+        <v-radio-group v-model="simulateValue" row>
+          <template v-slot:prepend>
+            <span class="mt-1">Simulate: </span>
+          </template>
+          <v-radio label="Idle" value="idle"></v-radio>
+          <v-radio label="Hover" value="hover"></v-radio>
+          <v-radio label="Active" value="active"></v-radio>
+        </v-radio-group>
       </v-flex>
     </v-layout>
   </v-container>
@@ -90,9 +146,11 @@ export default {
     return {
       preset: 'custom',
       presetItems: [{ text: 'Custom', value: 'custom' }],
+      elevationRange: [...Array(25).keys()],
       idleElevation: 0,
       hoverElevation: 0,
-      activeElevation: 0
+      activeElevation: 0,
+      simulateValue: ''
     }
   },
   computed: {
@@ -110,6 +168,15 @@ export default {
     },
     boxActiveShadow () {
       return this.getElevationShadow(this.activeElevation)
+    },
+    simulateIdle () {
+      return this.simulateValue === 'idle'
+    },
+    simulateHover () {
+      return this.simulateValue === 'hover'
+    },
+    simulateActive () {
+      return this.simulateValue === 'active'
     }
   },
   methods: {
@@ -154,26 +221,36 @@ export default {
 </script>
 
 <style scoped>
+:root {
+  --box-idle-shadow: none;
+  --box-hover-shadow: none;
+  --box-active-shadow: none;
+}
 
-.box-idle {
+.box-result {
   box-shadow: var(--box-idle-shadow);
 }
-
-.box-hover {
+.box-result:hover {
   box-shadow: var(--box-hover-shadow);
 }
-
-.box-active {
+.box-result:focus, .box-result:active {
+  box-shadow: var(--box-active-shadow);
+}
+.box-result.idle {
+  box-shadow: var(--box-idle-shadow);
+}
+.box-result.hover {
+  box-shadow: var(--box-hover-shadow);
+}
+.box-result.active {
   box-shadow: var(--box-active-shadow);
 }
 
-.box-combine {
-  box-shadow: var(--box-idle-shadow);
-}
-.box-combine:hover {
-  box-shadow: var(--box-hover-shadow);
-}
-.box-combine:focus, .box-combine:active {
-  box-shadow: var(--box-active-shadow);
+/* Is accurate pointer (e.g. mouse) */
+@media (pointer: fine) {
+  .touchscreen {
+    display: none;
+    visibility: hidden;
+  }
 }
 </style>

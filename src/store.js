@@ -40,26 +40,10 @@ export default new Vuex.Store({
     activeElevation: 6
   },
   mutations: {
-    SET_IDLE_ELEVATION (state, num) {
-      state.idleElevation = num
-    },
-    SET_HOVER_ELEVATION (state, num) {
-      state.hoverElevation = num
-    },
-    SET_ACTIVE_ELEVATION (state, num) {
-      state.activeElevation = num
-    }
+
   },
   actions: {
-    setIdleElevation ({ commit }, num) {
-      commit('SET_IDLE_ELEVATION', num)
-    },
-    setHoverElevation ({ commit }, num) {
-      commit('SET_HOVER_ELEVATION', num)
-    },
-    setActiveElevation ({ commit }, num) {
-      commit('SET_ACTIVE_ELEVATION', num)
-    }
+
   },
   getters: {
     getElevationShadow: (state) => (num) => {
