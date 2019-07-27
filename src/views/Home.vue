@@ -29,7 +29,7 @@
               <v-card-title primary-title>
                 <span>Idle</span>
                 <v-spacer></v-spacer>
-                <HomeSelect v-model="idleElevation" :items="elevationRange"></HomeSelect>
+                <HomeSelect v-model="idleElevation" :items="elevationRange" @input="elevationChange"></HomeSelect>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -37,6 +37,7 @@
                   min="0"
                   max="24"
                   step="1"
+                  @change="elevationChange"
                 ></v-slider>
               </v-card-text>
             </v-card>
@@ -46,7 +47,7 @@
               <v-card-title primary-title>
                 <span>Hover</span>
                 <v-spacer></v-spacer>
-                <HomeSelect v-model="hoverElevation" :items="elevationRange"></HomeSelect>
+                <HomeSelect v-model="hoverElevation" :items="elevationRange" @input="elevationChange"></HomeSelect>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -54,6 +55,7 @@
                   min="0"
                   max="24"
                   step="1"
+                  @change="elevationChange"
                 ></v-slider>
               </v-card-text>
             </v-card>
@@ -63,7 +65,7 @@
               <v-card-title primary-title>
                 <span>Active</span>
                 <v-spacer></v-spacer>
-                <HomeSelect v-model="activeElevation" :items="elevationRange"></HomeSelect>
+                <HomeSelect v-model="activeElevation" :items="elevationRange" @input="elevationChange"></HomeSelect>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -71,6 +73,7 @@
                   min="0"
                   max="24"
                   step="1"
+                  @change="elevationChange"
                 ></v-slider>
               </v-card-text>
             </v-card>
@@ -78,7 +81,11 @@
         </v-layout>
       </v-flex>
       <v-flex my-5 text-center>
-        <button class="box-result" :class="{ 'idle': simulateIdle, 'hover': simulateHover, 'active': simulateActive }">
+        <button
+          class="result"
+          :class="{ 'idle': simulateIdle, 'hover': simulateHover, 'active': simulateActive }"
+          :style="{ '--idle-shadow': idleShadow, '--hover-shadow': hoverShadow, '--active-shadow': activeShadow }"
+        >
           <v-card elevation="0">
             <v-card-title primary-title class="justify-center">
               Result
@@ -117,13 +124,13 @@
         <div v-show="viewResultCss">
           <highlight-code class="code-theme" lang="css">
             .result {
-              box-shadow: {{ boxIdleShadow }};
+              box-shadow: {{ idleShadow }};
             }
             .result:hover, .result:focus {
-              box-shadow: {{ boxHoverShadow }};
+              box-shadow: {{ hoverShadow }};
             }
             .result:active {
-              box-shadow: {{ boxActiveShadow }};
+              box-shadow: {{ activeShadow }};
             }
           </highlight-code>
         </div>
@@ -158,13 +165,13 @@ export default {
     ...mapGetters([
       'getElevationShadow'
     ]),
-    boxIdleShadow () {
+    idleShadow () {
       return this.getElevationShadow(this.idleElevation)
     },
-    boxHoverShadow () {
+    hoverShadow () {
       return this.getElevationShadow(this.hoverElevation)
     },
-    boxActiveShadow () {
+    activeShadow () {
       return this.getElevationShadow(this.activeElevation)
     },
     simulateIdle () {
@@ -182,21 +189,12 @@ export default {
       if (!val) return ''
       val = val.toString()
       return val.charAt(0).toUpperCase() + val.slice(1)
+    },
+    elevationChange () {
+      this.preset = 'custom'
     }
   },
   watch: {
-    boxIdleShadow (val) {
-      this.preset = 'custom'
-      document.documentElement.style.setProperty('--box-idle-shadow', val)
-    },
-    boxHoverShadow (val) {
-      this.preset = 'custom'
-      document.documentElement.style.setProperty('--box-hover-shadow', val)
-    },
-    boxActiveShadow (val) {
-      this.preset = 'custom'
-      document.documentElement.style.setProperty('--box-active-shadow', val)
-    },
     preset (val) {
       if (this.presets.hasOwnProperty(val)) {
         const elevations = this.presets[val]
@@ -207,13 +205,13 @@ export default {
     }
   },
   mounted () {
-    this.idleElevation = 2
-    this.hoverElevation = 4
-    this.activeElevation = 6
-
     Object.keys(this.presets).forEach((val) => {
       this.presetItems.push({ text: this.capitalize(val), value: val })
     })
+
+    if (this.presetItems.length > 1) {
+      this.preset = this.presetItems[1].value
+    }
 
     this.isTouchscreen = window.matchMedia('(pointer: coarse)').matches
     if (this.isTouchscreen) {
@@ -227,31 +225,25 @@ export default {
 </script>
 
 <style scoped>
-:root {
-  --box-idle-shadow: none;
-  --box-hover-shadow: none;
-  --box-active-shadow: none;
-}
-
-.box-result {
-  box-shadow: var(--box-idle-shadow);
+.result {
+  box-shadow: var(--idle-shadow);
   width: 100%;
   transition: box-shadow .2s cubic-bezier(.4, 0, .2, 1);
 }
-.box-result:hover, .box-result:focus {
-  box-shadow: var(--box-hover-shadow);
+.result:hover, .result:focus {
+  box-shadow: var(--hover-shadow);
   outline: none;
 }
-.box-result:active {
-  box-shadow: var(--box-active-shadow);
+.result:active {
+  box-shadow: var(--active-shadow);
 }
-.box-result.idle {
-  box-shadow: var(--box-idle-shadow);
+.result.idle {
+  box-shadow: var(--idle-shadow);
 }
-.box-result.hover {
-  box-shadow: var(--box-hover-shadow);
+.result.hover {
+  box-shadow: var(--hover-shadow);
 }
-.box-result.active {
-  box-shadow: var(--box-active-shadow);
+.result.active {
+  box-shadow: var(--active-shadow);
 }
 </style>
