@@ -6,7 +6,21 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     presets: {
-      card: [2, 4, 6]
+      bottomNavigationBar: [8, 8, 8],
+      card: [1, 4, 8],
+      containedButton: [2, 4, 8],
+      dialog: [24, 24, 24],
+      floatingActionButton: [6, 12, 12],
+      menu: [8, 8, 8],
+      modalSideSheet: [17, 17, 17],
+      modalBottomSheet: [17, 17, 17],
+      navDrawer: [17, 17, 17],
+      picker: [24, 24, 24],
+      refreshIndicator: [3, 3, 3],
+      snackbar: [6, 6, 6],
+      standardSideSheet: [8, 8, 8],
+      switch: [1, 1, 1],
+      topAppBar: [4, 4, 4]
     },
     elevations: [
       '0px 0px 0px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 0px 0px rgba(0,0,0,0.12)',
@@ -34,10 +48,7 @@ export default new Vuex.Store({
       '0px 10px 14px -6px rgba(0,0,0,0.2), 0px 22px 35px 3px rgba(0,0,0,0.14), 0px 8px 42px 7px rgba(0,0,0,0.12)',
       '0px 11px 14px -7px rgba(0,0,0,0.2), 0px 23px 36px 3px rgba(0,0,0,0.14), 0px 9px 44px 8px rgba(0,0,0,0.12)',
       '0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12)'
-    ],
-    idleElevation: 2,
-    hoverElevation: 4,
-    activeElevation: 6
+    ]
   },
   mutations: {
 

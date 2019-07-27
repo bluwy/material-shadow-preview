@@ -13,11 +13,11 @@
           <v-spacer></v-spacer>
           <v-flex shrink>
             <v-select
-              :items="presetItems"
               v-model="preset"
+              class="preset-select"
+              :items="presetItems"
               label="Preset"
               hide-details
-              style="width: 200px;"
             ></v-select>
           </v-flex>
         </v-layout>
@@ -147,7 +147,7 @@ export default {
   data () {
     return {
       preset: 'custom',
-      presetItems: [{ text: 'Custom', value: 'custom' }],
+      presetItems: [{ text: 'Custom...', value: 'custom' }],
       elevationRange: [...Array(25).keys()],
       idleElevation: 0,
       hoverElevation: 0,
@@ -195,7 +195,7 @@ export default {
   },
   mounted () {
     Object.keys(this.presets).forEach((val) => {
-      this.presetItems.push({ text: this.capitalize(val), value: val })
+      this.presetItems.push({ text: this.camelToNormal(val), value: val })
     })
 
     if (this.presetItems.length > 1) {
@@ -208,10 +208,10 @@ export default {
     }
   },
   methods: {
-    capitalize (val) {
+    camelToNormal (val) {
       if (!val) return ''
       val = val.toString()
-      return val.charAt(0).toUpperCase() + val.slice(1)
+      return val.charAt(0).toUpperCase() + val.slice(1).replace(/[A-Z]/g, (match) => ' ' + match)
     },
     elevationChange () {
       this.preset = 'custom'
@@ -221,6 +221,11 @@ export default {
 </script>
 
 <style scoped>
+.preset-select {
+  width: 250px;
+  max-width: 100%;
+}
+
 .result {
   box-shadow: var(--idle-shadow);
   width: 100%;
