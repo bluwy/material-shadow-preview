@@ -34,4 +34,14 @@ export default {
 a {
   text-decoration: none;
 }
+
+.code-theme > .hljs {
+  background-color: #1e1e1e;
+  color: #dcdcdc;
+  width: 100%;
+  max-height: 400px;
+}
+.code-theme > .hljs::before {
+  content: none;
+}
 </style>

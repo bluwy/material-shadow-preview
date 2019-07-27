@@ -115,7 +115,17 @@
           </v-flex>
         </v-layout>
         <div v-show="viewResultCss">
-          Code
+          <highlight-code class="code-theme" lang="css">
+            .result {
+              box-shadow: {{ boxIdleShadow }};
+            }
+            .result:hover, .result:focus {
+              box-shadow: {{ boxHoverShadow }};
+            }
+            .result:active {
+              box-shadow: {{ boxActiveShadow }};
+            }
+          </highlight-code>
         </div>
       </v-flex>
     </v-layout>
