@@ -112,17 +112,13 @@
         </button>
       </v-flex>
       <v-flex>
-        <v-layout row wrap>
+        <div class="d-flex">
           <v-spacer></v-spacer>
-          <v-flex shrink>
-            <v-checkbox v-model="viewResultCss" label="View CSS"  hide-details class="ma-0"></v-checkbox>
-          </v-flex>
-          <v-flex shrink>
-            <v-btn color="primary">Download</v-btn>
-          </v-flex>
-        </v-layout>
-        <div v-show="viewResultCss">
-          <highlight-code class="code-theme" lang="css">
+          <v-checkbox v-model="viewResultCss" class="my-auto mr-3 pt-0" label="View CSS"  hide-details></v-checkbox>
+          <v-btn color="primary">Download</v-btn>
+        </div>
+        <transition name="code-transition">
+          <highlight-code v-show="viewResultCss" class="code-theme mt-4" lang="css">
             .result {
               box-shadow: {{ idleShadow }};
             }
@@ -133,7 +129,7 @@
               box-shadow: {{ activeShadow }};
             }
           </highlight-code>
-        </div>
+        </transition>
       </v-flex>
     </v-layout>
   </v-container>

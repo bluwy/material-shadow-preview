@@ -45,4 +45,19 @@ a {
 .code-theme > .hljs::before {
   content: none;
 }
+
+.code-transition-enter, .code-transition-leave-to {
+  max-height: 0;
+  opacity: 0;
+}
+.code-transition-enter-to, .code-transition-leave {
+  max-height: 400px;
+  opacity: 1;
+}
+.code-transition-enter-active {
+  transition: max-height .2s cubic-bezier(.4, 0, .2, 1), opacity .3s .2s cubic-bezier(.4, 0, .2, 1);
+}
+.code-transition-leave-active {
+  transition: max-height .2s .3s cubic-bezier(.4, 0, .2, 1), opacity .3s cubic-bezier(.4, 0, .2, 1);
+}
 </style>
