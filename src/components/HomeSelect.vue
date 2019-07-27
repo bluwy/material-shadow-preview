@@ -1,6 +1,6 @@
 <template>
   <v-menu max-height="300">
-    <template v-slot:activator="{ on }">
+    <template #activator="{ on }">
       <v-btn text icon small color="primary" v-on="on">
         {{ value }}
       </v-btn>

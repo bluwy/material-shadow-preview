@@ -29,7 +29,7 @@
               <v-card-title primary-title>
                 <span>Idle</span>
                 <v-spacer></v-spacer>
-                <HomeSelect v-model="idleElevation" :items="elevationRange" @input="elevationChange"></HomeSelect>
+                <home-select v-model="idleElevation" :items="elevationRange" @input="elevationChange"></home-select>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -47,7 +47,7 @@
               <v-card-title primary-title>
                 <span>Hover</span>
                 <v-spacer></v-spacer>
-                <HomeSelect v-model="hoverElevation" :items="elevationRange" @input="elevationChange"></HomeSelect>
+                <home-select v-model="hoverElevation" :items="elevationRange" @input="elevationChange"></home-select>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -65,7 +65,7 @@
               <v-card-title primary-title>
                 <span>Active</span>
                 <v-spacer></v-spacer>
-                <HomeSelect v-model="activeElevation" :items="elevationRange" @input="elevationChange"></HomeSelect>
+                <home-select v-model="activeElevation" :items="elevationRange" @input="elevationChange"></home-select>
               </v-card-title>
               <v-card-text>
                 <v-slider
@@ -145,6 +145,9 @@ import HomeSelect from '@/components/HomeSelect.vue'
 
 export default {
   name: 'Home',
+  components: {
+    HomeSelect
+  },
   data () {
     return {
       preset: 'custom',
@@ -184,16 +187,6 @@ export default {
       return this.simulateValue === 'active'
     }
   },
-  methods: {
-    capitalize (val) {
-      if (!val) return ''
-      val = val.toString()
-      return val.charAt(0).toUpperCase() + val.slice(1)
-    },
-    elevationChange () {
-      this.preset = 'custom'
-    }
-  },
   watch: {
     preset (val) {
       if (this.presets.hasOwnProperty(val)) {
@@ -218,8 +211,15 @@ export default {
       this.simulateValue = 'idle'
     }
   },
-  components: {
-    HomeSelect
+  methods: {
+    capitalize (val) {
+      if (!val) return ''
+      val = val.toString()
+      return val.charAt(0).toUpperCase() + val.slice(1)
+    },
+    elevationChange () {
+      this.preset = 'custom'
+    }
   }
 }
 </script>

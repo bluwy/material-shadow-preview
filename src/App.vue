@@ -1,12 +1,12 @@
 <template>
   <v-app>
-    <AppHeader></AppHeader>
+    <app-header></app-header>
     <v-content>
       <v-container fluid>
         <router-view></router-view>
       </v-container>
     </v-content>
-    <AppFooter></AppFooter>
+    <app-footer></app-footer>
   </v-app>
 </template>
 
@@ -15,6 +15,7 @@ import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
 
 export default {
+  name: 'App',
   components: {
     AppHeader,
     AppFooter

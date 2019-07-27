@@ -7,7 +7,7 @@
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-menu v-if="$vuetify.breakpoint.smAndDown">
-      <template v-slot:activator="{ on }">
+      <template #activator="{ on }">
         <v-btn text icon v-on="on">
           <v-icon>fa-bars</v-icon>
         </v-btn>
