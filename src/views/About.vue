@@ -25,20 +25,18 @@
               </v-card-title>
               <v-card-text>
                 <p>
-                  Being a fan of Material Design, I had always liked the idea behind a paper interface.
-                  However, I too agree that its overused design in many applications causes some lack of creativity
-                  and have a "boring" look. Nonetheless, I really admire their shadow system and it's now being
-                  used in all of my designs.
+                  I had always liked the idea of a paper interface from Material Design.
+                  Although the widespread adoption had caused some lack of creativity on the web,
+                  the particular study of elevations in the guidelines has still stood out for me.
                 </p>
                 <p>
-                  Finding the shadows' CSS values was somewhat trivial too as the Material guidelines didn't actually provide them.
-                  Even though the <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-elevation">SCSS shadow calculations</a>
-                  can be found on GitHub, there wasn't a simple plug-and-play method for it. Visualizing how the elevations
-                  look was also another problem.
+                  Visualizing how the elevations look was a problem I had, so I figured I'll build
+                  a playground to test out the values, and thats generally how this website came about.
                 </p>
                 <p>
-                  I ended up using <a href="https://vuetifyjs.com">Vuetify's</a> elevation implementation throughout
-                  the website. The download CSS and SCSS are all values from Vuetify.
+                  In the end, I kind of overdid the whole playground idea and made custom CSS output,
+                  downloadable styles and a learning section. Many thanks to <a href="https://vuetifyjs.com">Vuetify</a>
+                  for the build-in Material look and its provided SCSS that made this project a smooth sailing.
                 </p>
               </v-card-text>
             </v-card>

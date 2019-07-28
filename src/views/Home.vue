@@ -3,8 +3,8 @@
     <v-layout column>
       <v-flex>
         <p>
-          The Material Design uses a 24-depth elevation system to represent how much is elevated upwards.
-          We can use different elevations for different components' states.
+          Material Design uses a 24-depth elevation system to represent how much is lifted upwards.
+          Play around with the elevations below and see its result!
           <router-link to="/learn">Learn more...</router-link>
         </p>
       </v-flex>
@@ -114,7 +114,7 @@
       <v-flex>
         <div class="d-flex">
           <v-spacer></v-spacer>
-          <v-checkbox v-model="viewResultCss" class="my-auto mr-3 pt-0" label="View CSS"  hide-details></v-checkbox>
+          <v-checkbox v-model="viewResultCss" class="my-auto mr-3 pt-0" label="Preview"  hide-details></v-checkbox>
           <v-btn color="primary">Download</v-btn>
         </div>
         <transition name="code-transition">

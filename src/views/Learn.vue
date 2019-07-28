@@ -15,17 +15,17 @@
           <v-card-text>
             <p class="body-2">
               Material Design is a design language that mimics papers, and creates depth to the screen.
-              The particular study of shadows and elevations plays a major in the design.
+              The particular study of shadows and elevations plays a major role in the design.
             </p>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn href="https://en.wikipedia.org/wiki/Material_Design" text color="primary">
+            <v-btn href="https://en.wikipedia.org/wiki/Material_Design" target="_blank" rel="noopener noreferrer" text color="primary">
               Wiki
               <v-icon right small>fa-external-link-alt</v-icon>
             </v-btn>
-            <v-btn href="https://material.io/design/introduction/" color="primary">
-              Docs
+            <v-btn href="https://material.io/design/introduction/" target="_blank" rel="noopener noreferrer" color="primary">
+              Guidelines
               <v-icon right small>fa-external-link-alt</v-icon>
             </v-btn>
           </v-card-actions>
@@ -39,14 +39,14 @@
           </v-card-title>
           <v-card-text>
             <p class="body-2">
-              Material Design uses a 24-depth elevation system to represent how much is elevated upwards.
+              Material Design uses a 24-depth elevation system to represent how much is lifted upwards.
               The elevation layers are used to convey distance and importance.
             </p>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn href="https://material.io/design/environment/elevation.html" color="primary">
-              Docs
+            <v-btn href="https://material.io/design/environment/elevation.html" target="_blank" rel="noopener noreferrer" color="primary">
+              Guidelines
               <v-icon right small>fa-external-link-alt</v-icon>
             </v-btn>
           </v-card-actions>
