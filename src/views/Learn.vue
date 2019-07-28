@@ -22,11 +22,11 @@
             <v-spacer></v-spacer>
             <v-btn href="https://en.wikipedia.org/wiki/Material_Design" target="_blank" rel="noopener noreferrer" text color="primary">
               Wiki
-              <v-icon right small>fa-external-link-alt</v-icon>
+              <v-icon right small>mdi-open-in-new</v-icon>
             </v-btn>
             <v-btn href="https://material.io/design/introduction/" target="_blank" rel="noopener noreferrer" color="primary">
               Guidelines
-              <v-icon right small>fa-external-link-alt</v-icon>
+              <v-icon right small>mdi-open-in-new</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -47,7 +47,7 @@
             <v-spacer></v-spacer>
             <v-btn href="https://material.io/design/environment/elevation.html" target="_blank" rel="noopener noreferrer" color="primary">
               Guidelines
-              <v-icon right small>fa-external-link-alt</v-icon>
+              <v-icon right small>mdi-open-in-new</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>

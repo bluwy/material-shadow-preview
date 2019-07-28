@@ -9,7 +9,7 @@
     <v-menu v-if="$vuetify.breakpoint.smAndDown">
       <template #activator="{ on }">
         <v-btn text icon v-on="on">
-          <v-icon>fa-bars</v-icon>
+          <v-icon>mdi-menu</v-icon>
         </v-btn>
       </template>
       <v-list>
