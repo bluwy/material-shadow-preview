@@ -9,7 +9,10 @@
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-checkbox v-model="preview" class="my-auto mr-3 pt-0" label="Preview" hide-details></v-checkbox>
-      <v-btn color="primary" :href="href" download>Download</v-btn>
+      <v-btn color="primary" :href="href" download>
+        Download
+        <v-icon right small>mdi-download</v-icon>
+      </v-btn>
     </v-card-actions>
     <transition name="code-transition">
       <v-card-text v-show="preview && code">

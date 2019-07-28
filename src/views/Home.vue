@@ -10,7 +10,6 @@
       </v-flex>
       <v-flex>
         <v-layout row wrap>
-          <v-spacer></v-spacer>
           <v-flex shrink>
             <v-select
               v-model="preset"
@@ -20,11 +19,17 @@
               hide-details
             ></v-select>
           </v-flex>
+          <v-spacer></v-spacer>
+          <v-flex shrink>
+            <v-btn color="primary" icon @click="randomElevations">
+              <v-icon>mdi-cached</v-icon>
+            </v-btn>
+          </v-flex>
         </v-layout>
       </v-flex>
       <v-flex>
         <v-layout row wrap justify-center>
-          <v-flex xs12 md4>
+          <v-flex xs12 sm4>
             <v-card :elevation="idleElevation">
               <v-card-title primary-title>
                 <span>Idle</span>
@@ -42,7 +47,7 @@
               </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs12 md4>
+          <v-flex xs12 sm4>
             <v-card :elevation="hoverElevation">
               <v-card-title primary-title>
                 <span>Hover</span>
@@ -60,7 +65,7 @@
               </v-card-text>
             </v-card>
           </v-flex>
-          <v-flex xs12 md4>
+          <v-flex xs12 sm4>
             <v-card :elevation="activeElevation">
               <v-card-title primary-title>
                 <span>Active</span>
@@ -114,11 +119,14 @@
       <v-flex>
         <div class="d-flex">
           <v-spacer></v-spacer>
-          <v-checkbox v-model="viewResultCss" class="my-auto mr-3 pt-0" label="Preview"  hide-details></v-checkbox>
-          <v-btn color="primary">Download</v-btn>
+          <v-checkbox v-model="viewResultCss" class="my-auto mr-3 pt-0" label="Preview" hide-details></v-checkbox>
+          <v-btn color="primary" @click="copyCode">
+            Copy result CSS
+            <v-icon right small>mdi-content-copy</v-icon>
+          </v-btn>
         </div>
         <transition name="code-transition">
-          <highlight-code v-show="viewResultCss" class="code-theme mt-4" lang="css">
+          <highlight-code v-show="viewResultCss" ref="code" class="code-theme mt-4" lang="css">
             .result {
               box-shadow: {{ idleShadow }};
             }
@@ -198,14 +206,12 @@ export default {
       this.presetItems.push({ text: this.camelToNormal(val), value: val })
     })
 
-    if (this.presetItems.length > 1) {
-      this.preset = this.presetItems[1].value
-    }
-
     this.isTouchscreen = window.matchMedia('(pointer: coarse)').matches
     if (this.isTouchscreen) {
       this.simulateValue = 'idle'
     }
+
+    this.randomElevations()
   },
   methods: {
     camelToNormal (val) {
@@ -215,6 +221,23 @@ export default {
     },
     elevationChange () {
       this.preset = 'custom'
+    },
+    copyCode () {
+      this.copyText(this.$refs.code.$el.innerText)
+    },
+    copyText (text) {
+      const textarea = document.createElement('textarea')
+      textarea.value = text
+      document.body.appendChild(textarea)
+      textarea.select()
+      document.execCommand('copy')
+      textarea.remove()
+    },
+    randomElevations() {
+      this.preset = 'custom'
+      this.idleElevation = Math.floor(Math.random() * 25)
+      this.hoverElevation = Math.floor(Math.random() * 25)
+      this.activeElevation = Math.floor(Math.random() * 25)
     }
   }
 }
@@ -222,7 +245,7 @@ export default {
 
 <style scoped>
 .preset-select {
-  width: 250px;
+  width: 210px;
   max-width: 100%;
 }
 
