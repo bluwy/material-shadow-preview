@@ -1,29 +1,34 @@
 # material-shadow-preview
 
-## Project setup
+Visualize Material elevations and shadows easily! 
+
+https://material-shadow-preview.netlify.com
+
+## Installation
+
+Make sure you have [npm](https://www.npmjs.com/get-npm) installed.
+
+Setup project
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+Serve the project onto developmet server (Local port 8080)
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+Build for production
 ```
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
+The project uses [Vue CLI](https://cli.vuejs.org/), so other supported commands would work too.
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Contributing
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Pull request are welcome. For any issues or feature requests, open an issue first. Thanks :)
+
+## License
+
+MIT

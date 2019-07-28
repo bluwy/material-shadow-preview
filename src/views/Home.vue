@@ -233,7 +233,7 @@ export default {
       document.execCommand('copy')
       textarea.remove()
     },
-    randomElevations() {
+    randomElevations () {
       this.preset = 'custom'
       this.idleElevation = Math.floor(Math.random() * 25)
       this.hoverElevation = Math.floor(Math.random() * 25)

@@ -4,7 +4,7 @@
       <v-card-text>
         <v-layout row wrap>
           <v-flex shrink>
-            Fork on <a class="white--text" href="https://github.com/bjornlug">GitHub</a>
+            Fork on <a class="white--text" href="https://github.com/BjornLuG/material-shadow-preview">GitHub</a>
           </v-flex>
           <v-spacer></v-spacer>
           <v-flex shrink>
