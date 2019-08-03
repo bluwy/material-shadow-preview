@@ -1,14 +1,14 @@
 <template>
   <v-footer dark color="primary" class="text-center">
     <v-card flat color="primary" width="100%">
-      <v-card-text>
+      <v-card-text class="white--text">
         <v-layout row wrap>
           <v-flex shrink>
-            Fork on <a class="white--text" href="https://github.com/BjornLuG/material-shadow-preview">GitHub</a>
+            Fork on <a class="white--text font-weight-bold" href="https://github.com/BjornLuG/material-shadow-preview">GitHub</a>
           </v-flex>
           <v-spacer></v-spacer>
           <v-flex shrink>
-            &copy; <a class="white--text" href="https://bjornlu.netlify.com">Bjorn Lu</a> {{ new Date().getFullYear() }}
+            &copy; <a class="white--text font-weight-bold" href="https://bjornlu.netlify.com">Bjorn Lu</a> {{ new Date().getFullYear() }}
           </v-flex>
         </v-layout>
       </v-card-text>

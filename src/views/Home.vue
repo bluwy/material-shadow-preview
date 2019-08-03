@@ -21,7 +21,7 @@
           </v-flex>
           <v-spacer></v-spacer>
           <v-flex shrink>
-            <v-btn color="primary" icon @click="randomElevations">
+            <v-btn color="primary" icon title="Randomize elevations" @click="randomElevations">
               <v-icon>mdi-cached</v-icon>
             </v-btn>
           </v-flex>
