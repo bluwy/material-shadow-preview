@@ -55,6 +55,7 @@
               <li><a href="https://vuex.vuejs.org">Vuex</a></li>
               <li><a href="https://router.vuejs.org">Vue Router</a></li>
               <li><a href="https://vuetifyjs.com">Vuetify</a></li>
+              <li><a href="https://highlightjs.org">Highlight.js</a></li>
               <li><a href="https://netlify.com">Netlify</a></li>
               <li><a href="https://material.io/design/">Material Design</a></li>
             </ul>
