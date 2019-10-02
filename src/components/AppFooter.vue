@@ -2,15 +2,15 @@
   <v-footer dark color="primary" class="text-center">
     <v-card flat color="primary" width="100%">
       <v-card-text class="white--text">
-        <v-layout row wrap>
-          <v-flex shrink>
+        <v-row>
+          <v-col cols="auto">
             Fork on <a class="white--text font-weight-bold" href="https://github.com/BjornLuG/material-shadow-preview">GitHub</a>
-          </v-flex>
+          </v-col>
           <v-spacer></v-spacer>
-          <v-flex shrink>
+          <v-col cols="auto">
             &copy; <a class="white--text font-weight-bold" href="https://bjornlu.netlify.com">Bjorn Lu</a> {{ new Date().getFullYear() }}
-          </v-flex>
-        </v-layout>
+          </v-col>
+        </v-row>
       </v-card-text>
     </v-card>
   </v-footer>

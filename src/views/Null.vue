@@ -1,11 +1,11 @@
 <template>
   <v-container grid-list-xl>
-    <v-layout row wrap justify-center align-center text-center>
-      <v-flex shrink>
+    <v-row row wrap justify-center align-center text-center>
+      <v-col cols="auto">
         <h1 class="display-4 font-weight-bold">404</h1>
         <p>Oopsie... Page not found. Go to <router-link to="/">Home page</router-link> instead?</p>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
-  <v-container grid-list-xl>
-    <v-layout row wrap>
-      <v-flex xs12>
+  <v-container>
+    <v-row>
+      <v-col cols="12">
         <h4 class="display-1">About</h4>
-      </v-flex>
-      <v-flex md6>
-        <v-layout column>
-          <v-flex>
+      </v-col>
+      <v-col md="6">
+        <v-row class="flex-column">
+          <v-col>
             <v-card>
               <v-card-title primary-title>
                 Author
@@ -17,8 +17,8 @@
                 </p>
               </v-card-text>
             </v-card>
-          </v-flex>
-          <v-flex>
+          </v-col>
+          <v-col>
             <v-card>
               <v-card-title primary-title>
                 Website
@@ -40,10 +40,10 @@
                 </p>
               </v-card-text>
             </v-card>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-      <v-flex md6>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col md="6">
         <v-card>
           <v-card-title primary-title>
             Attributions
@@ -61,8 +61,8 @@
             </ul>
           </v-card-text>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

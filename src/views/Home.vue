@@ -1,16 +1,16 @@
 <template>
-  <v-container grid-list-xl>
-    <v-layout column>
-      <v-flex>
+  <v-container>
+    <v-row class="flex-column">
+      <v-col>
         <p>
           Material Design uses a 24-depth elevation system to represent how much is lifted upwards.
           Play around with the elevations below and see its result!
           <router-link to="/learn">Learn more...</router-link>
         </p>
-      </v-flex>
-      <v-flex>
-        <v-layout row wrap>
-          <v-flex shrink>
+      </v-col>
+      <v-col>
+        <v-row>
+          <v-col cols="auto">
             <v-select
               v-model="preset"
               class="preset-select"
@@ -18,18 +18,18 @@
               label="Preset"
               hide-details
             ></v-select>
-          </v-flex>
+          </v-col>
           <v-spacer></v-spacer>
-          <v-flex shrink>
+          <v-col cols="auto">
             <v-btn color="primary" icon title="Randomize elevations" @click="randomElevations">
               <v-icon>mdi-cached</v-icon>
             </v-btn>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-      <v-flex>
-        <v-layout row wrap justify-center>
-          <v-flex xs12 sm4>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col>
+        <v-row>
+          <v-col cols="12" sm="4">
             <v-card :elevation="idleElevation">
               <v-card-title primary-title>
                 <span>Idle</span>
@@ -46,8 +46,8 @@
                 ></v-slider>
               </v-card-text>
             </v-card>
-          </v-flex>
-          <v-flex xs12 sm4>
+          </v-col>
+          <v-col cols="12" sm="4">
             <v-card :elevation="hoverElevation">
               <v-card-title primary-title>
                 <span>Hover</span>
@@ -64,8 +64,8 @@
                 ></v-slider>
               </v-card-text>
             </v-card>
-          </v-flex>
-          <v-flex xs12 sm4>
+          </v-col>
+          <v-col cols="12" sm="4">
             <v-card :elevation="activeElevation">
               <v-card-title primary-title>
                 <span>Active</span>
@@ -82,10 +82,10 @@
                 ></v-slider>
               </v-card-text>
             </v-card>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-      <v-flex my-5 text-center>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col class="my-5 text-center">
         <button
           class="result"
           :class="{ 'idle': simulateIdle, 'hover': simulateHover, 'active': simulateActive }"
@@ -103,20 +103,20 @@
               <span v-else>
                 Hover/click me to see results!
               </span>
-              <v-layout v-if="isTouchscreen" justify-center>
-                <v-flex shrink>
+              <v-row v-if="isTouchscreen" justify-center>
+                <v-col cols="auto">
                   <v-radio-group v-model="simulateValue" row>
                     <v-radio label="Idle" value="idle"></v-radio>
                     <v-radio label="Hover" value="hover"></v-radio>
                     <v-radio label="Active" value="active"></v-radio>
                   </v-radio-group>
-                </v-flex>
-              </v-layout>
+                </v-col>
+              </v-row>
             </v-card-text>
           </v-card>
         </button>
-      </v-flex>
-      <v-flex>
+      </v-col>
+      <v-col>
         <div class="d-flex">
           <v-spacer></v-spacer>
           <v-checkbox v-model="viewResultCss" class="my-auto mr-3 pt-0" label="Preview" hide-details></v-checkbox>
@@ -138,8 +138,8 @@
             }
           </highlight-code>
         </transition>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
