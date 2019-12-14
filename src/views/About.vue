@@ -4,46 +4,40 @@
       <v-col cols="12">
         <h4 class="display-1">About</h4>
       </v-col>
-      <v-col md="6">
-        <v-row class="flex-column">
-          <v-col>
-            <v-card>
-              <v-card-title primary-title>
-                Author
-              </v-card-title>
-              <v-card-text>
-                <p>
-                  Hi, I'm Bjorn. You can find more info of me on <a href="https://bjornlu.netlify.com">my website</a>.
-                </p>
-              </v-card-text>
+      <v-col cols="12" md="6">
+        <v-card style="margin-bottom: 24px;">
+          <v-card-title primary-title>
+            Author
+          </v-card-title>
+          <v-card-text>
+            <p>
+              Hi, I'm Bjorn. You can find more info of me on <a href="https://bjornlu.com">my website</a>.
+            </p>
+          </v-card-text>
+        </v-card>
+        <v-card>
+          <v-card-title primary-title>
+            Website
+          </v-card-title>
+          <v-card-text>
+            <p>
+              I had always liked the idea of a paper interface from Material Design.
+              Although the widespread adoption had caused some lack of creativity on the web,
+              the particular study of elevations in the guidelines has still stood out for me.
+            </p>
+            <p>
+              Visualizing how the elevations look was a problem I had, so I figured I'll build
+              a playground to test out the values, and thats generally how this website came about.
+            </p>
+            <p>
+              In the end, I kind of overdid the whole playground idea and made custom CSS output,
+              downloadable styles and a learning section. Many thanks to <a href="https://vuetifyjs.com">Vuetify</a>
+              for the build-in Material look and its provided SCSS that made this project a smooth sailing.
+            </p>
+          </v-card-text>
             </v-card>
-          </v-col>
-          <v-col>
-            <v-card>
-              <v-card-title primary-title>
-                Website
-              </v-card-title>
-              <v-card-text>
-                <p>
-                  I had always liked the idea of a paper interface from Material Design.
-                  Although the widespread adoption had caused some lack of creativity on the web,
-                  the particular study of elevations in the guidelines has still stood out for me.
-                </p>
-                <p>
-                  Visualizing how the elevations look was a problem I had, so I figured I'll build
-                  a playground to test out the values, and thats generally how this website came about.
-                </p>
-                <p>
-                  In the end, I kind of overdid the whole playground idea and made custom CSS output,
-                  downloadable styles and a learning section. Many thanks to <a href="https://vuetifyjs.com">Vuetify</a>
-                  for the build-in Material look and its provided SCSS that made this project a smooth sailing.
-                </p>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
       </v-col>
-      <v-col md="6">
+      <v-col cols="12" md="6">
         <v-card>
           <v-card-title primary-title>
             Attributions

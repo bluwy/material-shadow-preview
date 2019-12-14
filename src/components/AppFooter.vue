@@ -8,7 +8,7 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="auto">
-            &copy; <a class="white--text font-weight-bold" href="https://bjornlu.netlify.com">Bjorn Lu</a> {{ new Date().getFullYear() }}
+            &copy; <a class="white--text font-weight-bold" href="https://bjornlu.com">Bjorn Lu</a> {{ new Date().getFullYear() }}
           </v-col>
         </v-row>
       </v-card-text>

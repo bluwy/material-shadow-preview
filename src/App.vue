@@ -2,7 +2,7 @@
   <v-app>
     <app-header></app-header>
     <v-content>
-      <v-container fluid>
+      <v-container class="main-container" fluid>
         <router-view></router-view>
       </v-container>
     </v-content>
@@ -34,6 +34,10 @@ export default {
 
 a {
   text-decoration: none;
+}
+
+.main-container {
+  height: 100%;
 }
 
 .code-theme > .hljs {

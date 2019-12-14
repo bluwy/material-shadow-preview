@@ -193,7 +193,7 @@ export default {
   },
   watch: {
     preset (val) {
-      if (this.presets.hasOwnProperty(val)) {
+      if (val in this.presets) {
         const elevations = this.presets[val]
         this.idleElevation = elevations[0]
         this.hoverElevation = elevations[1]

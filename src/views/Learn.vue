@@ -4,7 +4,7 @@
       <v-col cols="12">
         <h4 class="display-1">Learn</h4>
       </v-col>
-      <v-col md="6">
+      <v-col cols="12" md="6">
         <v-card>
           <v-responsive class="mx-auto" :aspect-ratio="16/9" width="100%">
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/rrT6v5sOwJg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -31,7 +31,7 @@
           </v-card-actions>
         </v-card>
       </v-col>
-      <v-col md="6">
+      <v-col cols="12" md="6">
         <v-card>
           <v-img :aspect-ratio="16/9" width="100%" src="@/assets/images/material-elevations.jpg" alt="Material elevations cheatsheet"></v-img>
           <v-card-title primary-title>
