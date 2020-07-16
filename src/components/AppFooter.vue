@@ -4,7 +4,7 @@
       <v-card-text class="white--text">
         <v-row>
           <v-col cols="auto">
-            Fork on <a class="white--text font-weight-bold" href="https://github.com/BjornLuG/material-shadow-preview">GitHub</a>
+            Fork on <a class="white--text font-weight-bold" href="https://github.com/bluwy/material-shadow-preview">GitHub</a>
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="auto">
